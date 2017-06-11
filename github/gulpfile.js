@@ -1,13 +1,14 @@
-const gulp=require('gulp');
-const server=require('gulp-webserver');
-const rev=require('gulp-rev');
-const collector=require('gulp-rev-collector');
-const url=require('url');
-const browser=require('gulp-browserify');
+const gulp = require('gulp');
+const server = require('gulp-webserver');
+const rev = require('gulp-rev');
+const collector = require('gulp-rev-collector');
+const url = require('url');
+// const cssmin = require("gulp-clean-css");
+const browser = require('gulp-browserify');
 const imagemin = require('gulp-imagemin');
 //执行mock数据并启动服务
 var Mock =require("mockjs");
-gulp.task('web',function(){
+gulp.task('server',function(){
 	gulp.src('./')
 		.pipe(server({
 			port:3000,
@@ -32,7 +33,8 @@ gulp.task('web',function(){
 })
 //版本控制
 gulp.task('ver',function(){
-	gulp.src('./src/css/style.css')
+	gulp.src('./src/css/*.css')
+		// .pipe(cssmin())
 		.pipe(rev())
 		.pipe(gulp.dest('./build/css'))
 		.pipe(rev.manifest())
