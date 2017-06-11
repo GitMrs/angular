@@ -4,9 +4,61 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="./src/css/style-dcccceacae.css">
+	<style>
+		.bg{
+			background: red;
+		}
+	</style>
 </head>
-<body>
-	gulpfile页面
+<body ng-app="app">
+	<input type="text" ng-model="name">
+	<p>{{name}}</p>
+	<ul ng-init="data=[1,2]">
+		<li ng-repeat="i in data">
+			{{i}}
+		</li>
+	</ul>
+	<ul>
+		<li ng-repeat="i in datas">
+			{{i.name}}
+		</li>
+	</ul>
+	<ul>
+		<li ng-class="{bg:state==1}" ng-click="bg(1)">1</li>
+		<li ng-class="{bg:state==2}" ng-click="bg(2)">2</li>
+		<li ng-class="{bg:state==3}" ng-click="bg(3)">3</li>
+	</ul>
+	<ul>
+		<li>1111</li>
+		<li ng-show="false">222</li>
+	</ul>
+	<button ng-click="fn()">点击</button>
+	<button>{{name}}</button>
 	<script src='./build/js/app.js'></script>
+	<script src="lib/angular.js"></script>
+	<script>
+		var myapp = angular.module("app",[])
+			myapp.run(function($rootScope){
+				$rootScope.name = "1"
+				$rootScope.datas = [
+					{
+						"name":"zs"
+					},
+					{
+						"name":"zs"
+					},
+					{
+						"name":"ls"
+					}
+				]
+				$rootScope.fn=function(){
+					alert("111")
+				}
+				$rootScope.state = 1;
+				$rootScope.bg=function(i){
+					$rootScope.state = i
+				}
+			})
+	</script>
 </body>
 </html>
